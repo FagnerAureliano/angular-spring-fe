@@ -1,8 +1,6 @@
 <mat-card class="c_card">
-  <mat-toolbar color="primary">
-    Cursos Disponíveis
-  </mat-toolbar>
-  <mat-card-content>
+  <mat-toolbar color="primary"> Cursos Disponíveis </mat-toolbar>
+  <mat-card-content *ngIf="courses$ | async; else loading">
     <table mat-table [dataSource]="courses$">
       <!-- Position Column -->
       <ng-container matColumnDef="name">
@@ -20,4 +18,5 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
   </mat-card-content>
+  <ng-template #loading>not found</ng-template>
 </mat-card>

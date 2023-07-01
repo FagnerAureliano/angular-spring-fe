@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AngularMaterialModule } from 'src/shared/angular-material/angular-material.module';
+import { AngularMaterialModule } from 'src/shared/libs/angular-material/angular-material.module';
 import { CoursesComponent } from './courses/courses.component';
 import { CoursesRoutingModule } from './courses-routing.module';
 
