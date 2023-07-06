@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { MatTableModule } from '@angular/material/table';
-import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 const MODULES = [
   MatCardModule,
   MatTableModule,
   MatButtonModule,
+  MatIconModule,
   MatDialogModule,
   MatToolbarModule,
   MatProgressBarModule,
@@ -19,4 +21,4 @@ const MODULES = [
   imports: [MODULES],
   exports: [MODULES],
 })
-export class AngularMaterialModule { }
+export class AngularMaterialModule {}
