@@ -4,10 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from 'src/shared/libs/angular-material/angular-material.module';
 
+import { LoadingBarInterceptor } from 'src/shared/interceptors/loading-bar.interceptor';
+import { SharedModule } from 'src/shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoadingBarModule } from 'src/shared/libs/components/loading-bar/loading-bar.module';
-import { LoadingBarInterceptor } from 'src/shared/interceptors/loading-bar.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +18,7 @@ import { LoadingBarInterceptor } from 'src/shared/interceptors/loading-bar.inter
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    LoadingBarModule
+    SharedModule
   ],
   providers: [
     {
