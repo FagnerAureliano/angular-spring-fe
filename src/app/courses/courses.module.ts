@@ -4,11 +4,12 @@ import { AngularMaterialModule } from 'src/shared/libs/angular-material/angular-
 import { CoursesComponent } from './courses/courses.component';
 import { CoursesRoutingModule } from './courses-routing.module'; 
 import { SharedModule } from 'src/shared/shared.module';
+import { CourseFormComponent } from './course-form/course-form.component';
 
 
 
 @NgModule({
-  declarations: [CoursesComponent],
+  declarations: [CoursesComponent, CourseFormComponent],
   imports: [
     CommonModule,
     AngularMaterialModule,

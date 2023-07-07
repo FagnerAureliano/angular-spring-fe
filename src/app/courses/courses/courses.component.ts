@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, catchError, of, shareReplay } from 'rxjs';
+import { DialogComponent } from 'src/shared/libs/components/dialog/dialog.component';
 import { Course } from '../model/course.interface';
 import { CoursesService } from '../service/courses.service';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from 'src/shared/libs/components/dialog/dialog.component';
 
 @Component({
   selector: 'app-courses',
@@ -23,11 +24,19 @@ export class CoursesComponent implements OnInit {
     shareReplay()
   );
 
-  displayedColumns = ['name', 'category'];
+  displayedColumns = ['name', 'category', 'actions'];
 
-  constructor(private courseService: CoursesService, public dialog: MatDialog) { }
+  constructor(private courseService: CoursesService,
+    public dialog: MatDialog, private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void { }
+
+  onAdd() {
+    this.router.navigate(['new'], { relativeTo: this.route })
+
+  }
 
   onError(body: string, status: string, style: string) {
     let data = { body, header: status, style }
