@@ -9,7 +9,8 @@ import { Course } from '../model/course.interface';
 })
 export class CoursesService {
 
-  private readonly apiUrl = '/assets/courses.json';
+  private readonly apiUrl = 'api/courses';
+  // private readonly apiUrl = '/assets/courses.json';
   constructor(private http: HttpClient) {}
 
   list(): Observable<Course[]> {
