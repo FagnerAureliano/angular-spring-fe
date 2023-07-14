@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, delay, first, } from 'rxjs';
+import { Observable, delay, first } from 'rxjs';
 
 import { Course } from '../model/course.interface';
 
@@ -8,15 +8,14 @@ import { Course } from '../model/course.interface';
   providedIn: 'root',
 })
 export class CoursesService {
-
-  private readonly apiUrl = 'api/courses';
-  // private readonly apiUrl = '/assets/courses.json';
+  private readonly API = 'api/courses';
+  // private readonly API = '/assets/courses.json';
   constructor(private http: HttpClient) {}
 
   list(): Observable<Course[]> {
-    return this.http.get<Course[]>(this.apiUrl)
-    .pipe(
-      first(),
-    );
+    return this.http.get<Course[]>(this.API).pipe(first());
+  }
+  save(record: Course): Observable<Course> {
+    return this.http.post<Course>(this.API, record);
   }
 }
