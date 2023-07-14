@@ -4,8 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, catchError, of, shareReplay } from 'rxjs';
 import { DialogComponent } from 'src/shared/libs/components/dialog/dialog.component';
-import { Course } from '../model/course.interface';
-import { CoursesService } from '../service/courses.service';
+import { Course } from '../../model/course.interface';
+import { CoursesService } from '../../service/courses.service';
 
 @Component({
   selector: 'app-courses',
@@ -24,12 +24,18 @@ export class CoursesComponent implements OnInit {
 
   constructor(
     private courseService: CoursesService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {}
 
-  onError(body: string, status: string, style: string) {
+  handleAdd(): void {
+    this.router.navigate(['new'], { relativeTo: this.route });
+  }
+
+  onError(body: string, status: string, style: string): void {
     let data = { body, header: status, style };
     this.dialog.open(DialogComponent, {
       data: data,

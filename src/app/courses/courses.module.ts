@@ -1,14 +1,12 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AngularMaterialModule } from 'src/shared/libs/angular-material/angular-material.module';
-import { CoursesComponent } from './courses/courses.component';
-import { CoursesRoutingModule } from './courses-routing.module';
-import { SharedModule } from 'src/shared/shared.module';
-import { CourseFormComponent } from './course-form/course-form.component';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CoursesListComponent } from './courses-list/courses-list.component';
-
-
+import { AngularMaterialModule } from 'src/shared/libs/angular-material/angular-material.module';
+import { SharedModule } from 'src/shared/shared.module';
+import { CoursesListComponent } from './components/courses-list/courses-list.component';
+import { CourseFormComponent } from './containers/course-form/course-form.component';
+import { CoursesComponent } from './containers/courses/courses.component';
+import { CoursesRoutingModule } from './courses-routing.module';
 
 @NgModule({
   declarations: [CoursesComponent, CourseFormComponent, CoursesListComponent],
@@ -17,7 +15,7 @@ import { CoursesListComponent } from './courses-list/courses-list.component';
     AngularMaterialModule,
     CoursesRoutingModule,
     SharedModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
-export class CoursesModule { }
+export class CoursesModule {}
