@@ -15,8 +15,6 @@ import { CoursesService } from '../service/courses.service';
 export class CoursesComponent implements OnInit {
   courses$: Observable<Course[]> = this.courseService.list().pipe(
     catchError((error) => {
-      console.log(error);
-
       this.onError('Erro ao carregar curso.', error.status, '');
 
       return of([]);
@@ -24,22 +22,15 @@ export class CoursesComponent implements OnInit {
     shareReplay()
   );
 
-  displayedColumns = ['name', 'category', 'actions'];
+  constructor(
+    private courseService: CoursesService,
+    public dialog: MatDialog
+  ) {}
 
-  constructor(private courseService: CoursesService,
-    public dialog: MatDialog, private router: Router,
-    private route: ActivatedRoute
-  ) { }
-
-  ngOnInit(): void { }
-
-  onAdd() {
-    this.router.navigate(['new'], { relativeTo: this.route })
-
-  }
+  ngOnInit(): void {}
 
   onError(body: string, status: string, style: string) {
-    let data = { body, header: status, style }
+    let data = { body, header: status, style };
     this.dialog.open(DialogComponent, {
       data: data,
     });

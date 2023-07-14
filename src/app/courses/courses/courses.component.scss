@@ -1,7 +1,10 @@
-table {
-  width: 95vw;
+mat-card {
+  margin: 2em auto;
+  max-width: 80%;
+  text-align: center;
 }
-.c_card {
-  margin: 1rem;
+.column-flex {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
 }
-

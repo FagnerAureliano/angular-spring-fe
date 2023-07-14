@@ -15,7 +15,7 @@ export class CoursesService {
   list(): Observable<Course[]> {
     return this.http.get<Course[]>(this.API).pipe(first());
   }
-  save(record: Course): Observable<Course> {
-    return this.http.post<Course>(this.API, record);
+  save(record: Partial<Course>): Observable<Course> {
+    return this.http.post<Course>(this.API, record).pipe(first());
   }
 }
