@@ -6,6 +6,7 @@
       [courses]="courses"
       (add)="handleAdd()"
       (edit)="handleEdit($event)"
+      (exclude)="handleExclude($event)"
     ></app-courses-list>
     <ng-template #loading>not found</ng-template>
   </div>

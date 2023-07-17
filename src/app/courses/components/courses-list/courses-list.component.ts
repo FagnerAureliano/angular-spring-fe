@@ -10,6 +10,7 @@ export class CoursesListComponent {
   @Input() courses: Course[] = [];
   @Output() add = new EventEmitter(false);
   @Output() edit = new EventEmitter(false);
+  @Output() exclude = new EventEmitter(false);
   readonly displayedColumns = ['name', 'category', 'actions'];
 
   handleAdd() {
@@ -17,5 +18,8 @@ export class CoursesListComponent {
   }
   handleEdit(course: Course) {
     this.edit.emit(course);
+  }
+  handleExclude(course: Course) {
+    this.exclude.emit(course);
   }
 }
