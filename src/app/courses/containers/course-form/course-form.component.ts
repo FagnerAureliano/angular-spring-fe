@@ -3,6 +3,8 @@ import { NonNullableFormBuilder } from '@angular/forms';
 
 import { Location } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
+import { Course } from '../../model/course.interface';
 import { CoursesService } from '../../service/courses.service';
 
 @Component({
@@ -12,17 +14,27 @@ import { CoursesService } from '../../service/courses.service';
 })
 export class CourseFormComponent implements OnInit {
   form = this.fb.group({
+    _id: [''],
     name: [''],
     category: [''],
   });
+  course!: Course;
+
   constructor(
     private fb: NonNullableFormBuilder,
     private service: CoursesService,
     private _snackBar: MatSnackBar,
-    private location: Location
-  ) {}
+    private location: Location,
+    private route: ActivatedRoute
+  ) {
+    this.route.data.subscribe((data: any) => {
+      this.course = data.course;
+    });
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.form.setValue(this.course);
+  }
 
   onCancel() {
     this.location.back();

@@ -41,4 +41,7 @@ export class CoursesComponent implements OnInit {
       data: data,
     });
   }
+  handleEdit(course: Course): void {
+    this.router.navigate(['edit', course._id], { relativeTo: this.route });
+  }
 }

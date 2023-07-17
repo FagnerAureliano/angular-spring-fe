@@ -4,7 +4,8 @@
     <app-courses-list
       *ngIf="courses$ | async as courses; else loading"
       [courses]="courses"
-      (addEmitter)="handleAdd()"
+      (add)="handleAdd()"
+      (edit)="handleEdit($event)"
     ></app-courses-list>
     <ng-template #loading>not found</ng-template>
   </div>

@@ -22,7 +22,7 @@
           mat-raised-button
           color="primary"
           aria-label="Adicionar um curso"
-          (click)="onAdd()"
+          (click)="handleAdd()"
         >
           <div class="w-full flex action-add">
             <mat-icon>add</mat-icon>
@@ -30,7 +30,12 @@
         </button>
       </mat-header-cell>
       <mat-cell *matCellDef="let course" class="action-column">
-        <button mat-icon-button color="primary" aria-label="Editar curso">
+        <button
+          mat-icon-button
+          color="primary"
+          aria-label="Editar curso"
+          (click)="handleEdit(course)"
+        >
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-icon-button color="warn" aria-label="Remover curso">

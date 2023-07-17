@@ -8,10 +8,14 @@ import { Course } from '../../model/course.interface';
 })
 export class CoursesListComponent {
   @Input() courses: Course[] = [];
-  @Output() addEmitter = new EventEmitter(false);
+  @Output() add = new EventEmitter(false);
+  @Output() edit = new EventEmitter(false);
   readonly displayedColumns = ['name', 'category', 'actions'];
 
-  onAdd() {
-    this.addEmitter.emit(true);
+  handleAdd() {
+    this.add.emit(true);
+  }
+  handleEdit(course: Course) {
+    this.edit.emit(course);
   }
 }
