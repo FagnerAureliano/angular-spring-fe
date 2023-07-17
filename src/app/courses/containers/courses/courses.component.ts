@@ -7,6 +7,7 @@ import { Observable, catchError, of, shareReplay } from 'rxjs';
 import { DialogComponent } from 'src/shared/libs/components/dialog/dialog.component';
 import { Course } from '../../model/course.interface';
 import { CoursesService } from '../../service/courses.service';
+import { ConfirmationDialogComponent } from 'src/shared/libs/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-courses',
@@ -43,15 +44,23 @@ export class CoursesComponent {
     this.router.navigate(['edit', course._id], { relativeTo: this.route });
   }
   handleExclude(course: Course): void {
-    this.service.remove(course._id).subscribe(
-      () => {
-        this.refresh();
-        this.onSuccess();
-      },
-      (err) => {
-        this.onError('Erro ao tentar remover curso.', err.status, '');
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: 'Tem certeza que deseja remover este curso?',
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.service.remove(course._id).subscribe({
+          next: () => {
+            this.refresh();
+            this.onSuccess();
+          },
+          error: (err) => {
+            this.onError('Erro ao tentar remover curso.', err.status, '');
+          },
+        });
       }
-    );
+    });
   }
   onSuccess() {
     this._snackBar.open('Course successful removed.', 'OK', {
