@@ -18,4 +18,7 @@ export class CoursesService {
   save(record: Partial<Course>): Observable<Course> {
     return this.http.post<Course>(this.API, record).pipe(first());
   }
+  findById(id: string): Observable<Course> {
+    return this.http.get<Course>(`${this.API}/${id}`).pipe(first());
+  }
 }
