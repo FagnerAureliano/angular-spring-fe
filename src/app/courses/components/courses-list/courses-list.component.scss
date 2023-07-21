@@ -3,11 +3,14 @@ mat-table {
   max-height: 600px;
 }
 .action-column {
-  flex: 0 0 105px;
+  flex: 0 0 125px;
 }
 .action-column-header {
-  flex: 0 0 88px;
+  // flex: 0 0 93px;
+  margin: 0 auto;
 }
-.action-add {
-  padding-top: 0.6rem;
+mat-cell:last-of-type,
+mat-header-cell:last-of-type,
+mat-footer-cell:last-of-type {
+  padding-right: 17px;
 }

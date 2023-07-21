@@ -17,12 +17,13 @@
 
     <!-- Actions Column -->
     <ng-component matColumnDef="actions">
-      <mat-header-cell *matHeaderCellDef class="action-column-header">
+      <mat-header-cell *matHeaderCellDef class="action-column">
         <button
           mat-raised-button
           color="primary"
           aria-label="Adicionar um curso"
           (click)="handleAdd()"
+          class="action-column-header"
         >
           <div class="w-full flex action-add">
             <mat-icon>add</mat-icon>
