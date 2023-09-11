@@ -62,12 +62,14 @@ export class CourseFormComponent implements OnInit {
     console.log(this.form.value);
   }
   getLessonsFormArray() {
-    return (<UntypedFormArray>this.form.get('lessons')).controls;
+    return (<FormArray>this.form.get('lessons')).controls;
   }
   private retrieveLessons(course: Course) {
     const lessons = [];
     if (course?.lessons) {
-      course.lessons.forEach((lesson) => lessons.push(lesson));
+      course.lessons.forEach((lesson) =>
+        lessons.push(this.createLesson(lesson))
+      );
     } else {
       lessons.push(this.createLesson());
     }
