@@ -64,6 +64,14 @@ export class CourseFormComponent implements OnInit {
   getLessonsFormArray() {
     return (<FormArray>this.form.get('lessons')).controls;
   }
+  addNewLesson():void {
+    const lessons = this.form.get('lessons') as UntypedFormArray;
+    lessons.push(this.createLesson());
+  }
+  removeLesson(index: number): void {
+    const lessons = this.form.get('lessons') as UntypedFormArray;
+    lessons.removeAt(index);
+  }
   private retrieveLessons(course: Course) {
     const lessons = [];
     if (course?.lessons) {
@@ -98,6 +106,7 @@ export class CourseFormComponent implements OnInit {
       duration: 3000,
     });
   }
+
   onSuccess() {
     this._snackBar.open('Course successful saved.', 'OK', {
       duration: 3000,
