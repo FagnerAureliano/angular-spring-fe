@@ -64,7 +64,7 @@ export class CourseFormComponent implements OnInit {
   getLessonsFormArray() {
     return (<FormArray>this.form.get('lessons')).controls;
   }
-  addNewLesson():void {
+  addNewLesson(): void {
     const lessons = this.form.get('lessons') as UntypedFormArray;
     lessons.push(this.createLesson());
   }
@@ -86,20 +86,38 @@ export class CourseFormComponent implements OnInit {
   private createLesson(lesson: Lesson = { id: '', name: '', youtubeUrl: '' }) {
     return this.fb.group({
       id: [lesson.id],
-      name: [lesson.name],
-      youtubeUrl: [lesson.youtubeUrl],
+      name: [
+        lesson.name,
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(100),
+        ],
+      ],
+      youtubeUrl: [
+        lesson.youtubeUrl,
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(11),
+        ],
+      ],
     });
   }
   onCancel() {
     this.location.back();
   }
   onSubmit() {
-    this.service.save(this.form.value).subscribe({
-      next: () => {
-        this.onSuccess(), this.onCancel();
-      },
-      error: () => this.onError(),
-    });
+    if (this.form.valid) {
+      this.service.save(this.form.value).subscribe({
+        next: () => {
+          this.onSuccess(), this.onCancel();
+        },
+        error: () => this.onError(),
+      });
+    } else {
+      alert('Formulário invalido');
+    }
   }
   onError() {
     this._snackBar.open('Error on save course.', 'OK', {
@@ -130,5 +148,9 @@ export class CourseFormComponent implements OnInit {
       return `Tamanho máximo precisa ser de ${requiredLength} caracteres.`;
     }
     return 'Campo invalido';
+  }
+  isFormArrayRequired(): boolean {
+    const lessons = this.form.get('lessons') as UntypedFormArray;
+    return !lessons.valid && lessons.hasError('required') && lessons.touched;
   }
 }
